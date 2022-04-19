@@ -218,13 +218,16 @@
             if(debug) {
               sdk.getData(function(data) { console.log('Data stored ' + JSON.stringify(data)); });
             }
+
+            //Set content for preview
+            console.log('Setting content for preview data[htmlButton]- ' + data['htmlButton'])
+            sdk.setContent(data['htmlButton'], function(data) { 
+              console.log('Setting content for preview - ' + JSON.stringify(data))
+            });
+
           //}
         }); 
-        //Set content for preview
         
-        sdk.setContent(data['htmlButton'], function(data) { 
-          console.log('Setting content for preview - ' + JSON.stringify(data))
-        });
         /* sdk.getContent(function(data){
           console.log('Clicked save. Content from getContent ' + data);
           sdk.setContent(data['htmlButton']);
