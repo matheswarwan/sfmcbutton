@@ -351,11 +351,17 @@
       sdk.getData(function(data){
         console.log('Get data from page load ' + JSON.stringify(data));
         console.log('hardcoded data - ')
-        document.getElementById('text-input-id-btn-text').value = data['buttonText']
-        document.getElementById('text-input-id-link-url').value = data['linkUrl']
-        document.getElementById('text-input-id-title').value = data['title']
-        document.getElementById('text-input-id-tracking-alias').value = data['trackingAlias']
-          
+        if(isEmptyObject(data)) {
+          document.getElementById('text-input-id-btn-text').value = 'Button Text Default Value on page load';
+          document.getElementById('text-input-id-link-url').value = '';
+          document.getElementById('text-input-id-title').value = '';
+          document.getElementById('text-input-id-tracking-alias').value = '';
+        }else{
+          document.getElementById('text-input-id-btn-text').value = data['buttonText']
+          document.getElementById('text-input-id-link-url').value = data['linkUrl']
+          document.getElementById('text-input-id-title').value = data['title']
+          document.getElementById('text-input-id-tracking-alias').value = data['trackingAlias']
+        }
         /* if(!isEmptyObject(data)) {
           sdk.setData(
                   {
