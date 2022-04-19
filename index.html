@@ -271,9 +271,40 @@
         }, 5000)
         );
      
+      sdk.getContent(function (content) {
+        consoleprint(debug, "Get Content on page load " + content);
+        if (content) {
+          sdk.setContent(content, function (contentFound) {
+            consoleprint(
+              debug,
+              "Content Found on page load " + contentFound
+            );
+          });
+        } else {
+          sdk.setContent(
+            "No button to preview",
+            function (setContent) {
+              //if no html found, check if getdata has the value
+              sdk.getData(function (data) {
+                if (data["htmlButton"]) {
+                  sdk.setContent(data["htmlButton"]);
+                } else {
+                  sdk.setContent("Nothing in getData?!?!");
+                }
+              });
+              consoleprint(
+                debug,
+                "Content NOT FOUND on page load " + content
+              );
+            }
+          );
+        }
+      });
+
+      
       sdk.getData(function(data){
-        console.log('Get Content from page load ' + JSON.stringify(data));
-        if(data) {
+        console.log('Get data from page load ' + JSON.stringify(data));
+        if(!isEmptyObject(data)) {
           sdk.setData(
                   {
                     'buttonText' : btntext,
@@ -290,11 +321,11 @@
         }
       }); 
 
-      sdk.getContent(function(data){
+     /* sdk.getContent(function(data){
         console.log('Content from getContent ' + data);
         sdk.setContent(getHtml(btntext, linkurl, title, trackingalias));
       });
-
+    */
     </script>
 
     <script>
