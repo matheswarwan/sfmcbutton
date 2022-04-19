@@ -277,17 +277,35 @@
           renderPreview();
         }, 50)
         );
-     
+      document.getElementById('text-input-id-link-url').addEventListener(
+        'input',
+        debounce((e) => {
+          renderPreview();
+        }, 50)
+        );
+      document.getElementById('text-input-id-title').addEventListener(
+        'input',
+        debounce((e) => {
+          renderPreview();
+        }, 50)
+        );
+      document.getElementById('text-input-id-tracking-alias').addEventListener(
+        'input',
+        debounce((e) => {
+          renderPreview();
+        }, 50)
+        );
+
       sdk.getContent(function (content) {
         consoleprint(debug, "Get Content on page load " + content);
         if (content) {
           sdk.setContent(content, function (contentFound) {
             consoleprint(
               debug,
-              "Content Found on page load " + contentFound
+              "Content Found on page load (must be just html) " + contentFound
             );
           });
-        } else {
+        } /*else {
           sdk.setContent(
             "No button content to preview",
             function (content) {
@@ -298,20 +316,36 @@
                 } else {
                   sdk.setContent("Nothing in getData?!?!");
                 }
-              });*/ 
+              });* / 
               consoleprint(
                 debug,
                 "Content is set on page load " + content
               );
             }
-          );
-        }
+          ); 
+        }*/
       });
 
       
+      /* hardcoding content */ 
+      content = {
+        'buttonText' : 'btntext',
+        'linkUrl' : 'linkurl',
+        'title' : 'title',
+        'trackingAlias' : 'trackingalias',
+        'htmlButton' : getHtml(btntext, linkurl, title, trackingalias)
+      }
+      sdk.setData(content); 
+
       sdk.getData(function(data){
         console.log('Get data from page load ' + JSON.stringify(data));
-        if(!isEmptyObject(data)) {
+        console.log('hardcoded data - ')
+        document.getElementById('text-input-id-btn-text').value = content['buttonText']
+        document.getElementById('text-input-id-link-url').value = content['linkUrl']
+        document.getElementById('text-input-id-title').value = content['title']
+        document.getElementById('text-input-id-tracking-alias').value = content['trackingAlias']
+          
+        /* if(!isEmptyObject(data)) {
           sdk.setData(
                   {
                     'buttonText' : btntext,
@@ -325,7 +359,7 @@
           if(debug) {
             sdk.getData(function(data) { console.log('Data stored ' + JSON.stringify(data)); });
           }
-        }
+        } */
       }); 
 
      /* sdk.getContent(function(data){
