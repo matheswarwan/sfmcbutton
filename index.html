@@ -137,7 +137,8 @@
     <script src="blocksdk.js"></script>
 
     <script>
-      var htmlButton = `<!-- button starts -->
+      function getHtml(btntext, linkurl, title, trackingalias) {
+        var htmlButton = `<!-- button starts -->
       <div style="text-align: center; margin: 0; padding: 0">
          <!-- start Outlook button -->
          <!-- put new URL in both hrefs -->
@@ -146,7 +147,7 @@
             <div style="line-height: 16px; height: 16px ">&#8202;</div>
             <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://pressed" style="height:41px;v-text-anchor:center; width:135px; margin-bottom:0" arcsize="210%" fillcolor="#fff" strokecolor="#016ECC" strokeweight="1.5pt">
                <w:anchorlock/>
-               <center style="color:#032E61;font: 10.5pt sans-serif;font-weight: bold;margin-bottom: 0">Button Style</center>
+               <center style="color:#032E61;font: 10.5pt sans-serif;font-weight: bold;margin-bottom: 0">${btntext}</center>
             </v:roundrect>
          </a>
          <![endif]-->
@@ -162,7 +163,7 @@
                   <tr>
                      <td align="center" bgcolor="#ffffff" role="presentation" style="border:2px solid #016ECC;border-radius:23px;cursor:auto;height:41px;mso-padding-alt:12px 22px;background:#ffffff;" valign="middle">
                         <a href="#" alias="" title="">
-                           <p style="display:inline-block;background:#ffffff;color:#032E61;font-family:itc-avant-garde-gothic-pro, sans-serif;font-size:13px;font-weight:bold;line-height:17px;letter-spacing:0.5px;margin:0;text-decoration:none;text-transform:none;padding:12px 22px;mso-padding-alt:0px;border-radius:23px;"><b class="heading-dark-mode">Button Style</b></p>
+                           <p style="display:inline-block;background:#ffffff;color:#032E61;font-family:itc-avant-garde-gothic-pro, sans-serif;font-size:13px;font-weight:bold;line-height:17px;letter-spacing:0.5px;margin:0;text-decoration:none;text-transform:none;padding:12px 22px;mso-padding-alt:0px;border-radius:23px;"><b class="heading-dark-mode">${btntext}</b></p>
                         </a>
                      </td>
                   </tr>
@@ -186,7 +187,8 @@
       </tbody>
       </table>
       </div>`;
-
+        return htmlButton;
+      }
 
       var textAreaContent;
       var errMsg;
@@ -236,7 +238,7 @@
                         'linkUrl' : linkurl,
                         'title' : title,
                         'trackingAlias' : trackingalias,
-                        'htmlButton' : htmlButton
+                        'htmlButton' : getHtml(btntext, linkurl, title, trackingalias)
                       }
                     );
               console.log('Clicked save. Get content is empty. Saved ' + btntext + ' to setData.');
@@ -246,7 +248,7 @@
             }
           }); 
           //Set content for preview
-          sdk.setContent(htmlButton);
+          sdk.setContent(getHtml(btntext, linkurl, title, trackingalias));
         }
         );
      
@@ -259,7 +261,7 @@
                     'linkUrl' : linkurl,
                     'title' : title,
                     'trackingAlias' : trackingalias,
-                    'htmlButton' : htmlButton
+                    'htmlButton' : getHtml(btntext, linkurl, title, trackingalias)
                   }
                 );
           console.log('Get content from page load is empty. Saved ' + btntext + ' to setData.');
@@ -269,7 +271,7 @@
         }
       }); 
 
-      sdk.setContent(htmlButton);
+      sdk.setContent(getHtml(btntext, linkurl, title, trackingalias));
 
       sdk.getContent(function(data){
         console.log('Content from getContent ' + data);
