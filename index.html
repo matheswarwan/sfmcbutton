@@ -296,9 +296,9 @@
           //Set content for preview
           console.log(
             "Setting content for preview data[htmlButton]- " +
-              data["htmlButton"]
+              getHtml(btntext, linkurl, title, align, trackingalias)
           );
-          sdk.setContent(data["htmlButton"], function (data) {
+          sdk.setContent(getHtml(btntext, linkurl, title, align, trackingalias), function (data) {
             console.log(
               "Setting content for preview - " + JSON.stringify(data)
             );
@@ -435,7 +435,7 @@
         console.log("hardcoded data - ");
         if (isEmptyObject(data)) {
           document.getElementById("text-input-id-btn-text").value =
-            "Button Text Default Value on page load";
+            "Button Text";
           document.getElementById("text-input-id-link-url").value = "";
           document.getElementById("text-input-id-title").value = "";
           document.getElementById("text-input-id-tracking-alias").value = "";
