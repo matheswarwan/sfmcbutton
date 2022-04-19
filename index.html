@@ -135,6 +135,36 @@
             />
           </div>
         </div>
+        <div class="slds-form-element">
+          <label class="slds-form-element__label" for="select-01">Alignment</label>
+          <div class="slds-form-element__control">
+          <div class="slds-select_container">
+          <select class="slds-select" id="select-align">
+          <option value = "Left">Left</option>
+          <option value = "Center">Center</option>
+          <option value = "Right">Right</option>
+          </select>
+          </div>
+          </div>
+          </div>
+        <!-- <div class="slds-button-group" role="group">
+          <button id="btnLeft" class="slds-button slds-button_neutral">Left</button>
+          <button id="btnCenter" class="slds-button slds-button_neutral">Center</button>
+          <button id="btnRight" class="slds-button slds-button_neutral">Right</button>
+          </div> -->
+          <!-- < ! - -  Align button start - - >
+        <div class="slds-button-group" role="group">
+          <button class="slds-button slds-button_neutral">Align</button>
+          <div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-button_last">
+            <button class="slds-button slds-button_icon slds-button_icon-border-filled" aria-haspopup="true" aria-expanded="false" title="Show More">
+              <svg class="slds-button__icon" aria-hidden="true">
+                <use xlink:href="/svg/btn-symbols.svg#down"></use>
+              </svg>
+              <span class="slds-assistive-text">Show More</span>
+            </button>
+          </div>
+        </div>
+        < ! - - Align button end  - - >-->
       </div>
       <div style="padding-top: 5px">
         <div class="alert" id="alertBox">
@@ -172,7 +202,7 @@
     <script src="blocksdk.js"></script>
 
     <script>
-      function getHtml(btntext, linkurl, title, trackingalias) {
+      function getHtml(btntext, linkurl, title, align, trackingalias) {
         var htmlButton = `<!-- button starts -->
       <div style="text-align: center; margin: 0; padding: 0">
          <!-- start Outlook button -->
@@ -236,20 +266,20 @@
           var btntext = document.getElementById("text-input-id-btn-text").value;
           var linkurl = document.getElementById("text-input-id-link-url").value;
           var title = document.getElementById("text-input-id-title").value;
-          var trackingalias = document.getElementById(
-            "text-input-id-tracking-alias"
-          ).value;
+          var align = document.getElementById('select-align').selectedOptions[0].value;
+          var trackingalias = document.getElementById("text-input-id-tracking-alias").value;
 
           console.log("btntext in renderpreview() --> " + btntext);
           console.log("linkurl in renderpreview() --> " + linkurl);
           console.log("title in renderpreview() --> " + title);
+          console.log("title in renderpreview() --> " + align);
           console.log("trackingalias in renderpreview() --> " + trackingalias);
           sdk.setData({
             buttonText: btntext,
             linkUrl: linkurl,
             title: title,
             trackingAlias: trackingalias,
-            htmlButton: getHtml(btntext, linkurl, title, trackingalias),
+            htmlButton: getHtml(btntext, linkurl, title, align, trackingalias),
           });
           console.log(
             "Clicked save. Get content is empty. Saved " +
@@ -302,9 +332,8 @@
       var btntext = document.getElementById("text-input-id-btn-text").value;
       var linkurl = document.getElementById("text-input-id-link-url").value;
       var title = document.getElementById("text-input-id-title").value;
-      var trackingalias = document.getElementById(
-        "text-input-id-tracking-alias"
-      ).value;
+      var align = document.getElementById('select-align').selectedOptions[0].value;
+      var trackingalias = document.getElementById("text-input-id-tracking-alias").value;
 
       console.log("btntext --> " + btntext);
       console.log("linkurl --> " + linkurl);
@@ -350,6 +379,15 @@
           renderPreview();
         }, 500)
       );
+      document.getElementById("select-align").addEventListener(
+        "input",
+        debounce((e) => {
+          console.log("element deboucned --> " + JSON.stringify(e));
+          renderPreview();
+        }, 500)
+      );
+      
+
 
       sdk.getContent(function (content) {
         consoleprint(debug, "Get Content on page load " + content);
@@ -400,12 +438,14 @@
           document.getElementById("text-input-id-link-url").value = "";
           document.getElementById("text-input-id-title").value = "";
           document.getElementById("text-input-id-tracking-alias").value = "";
+          document.getElementById('select-align').value = 'Left';
         } else {
           document.getElementById("text-input-id-btn-text").value =
             data["buttonText"];
           document.getElementById("text-input-id-link-url").value =
             data["linkUrl"];
           document.getElementById("text-input-id-title").value = data["title"];
+          document.getElementById('select-align').value = data['align'];
           document.getElementById("text-input-id-tracking-alias").value =
             data["trackingAlias"];
         }
