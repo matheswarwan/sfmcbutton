@@ -160,17 +160,34 @@
         );
       });
 
-      sdk.setContent(
+
+      var btntext = document.getElementById('text-input-id-btn-text');
+      var linkurl = document.getElementById('text-input-id-link-url');
+      var title = document.getElementById('text-input-id-title');
+      var trackingalias = document.getElementById('text-input-id-tracking-alias');
+
+      console.log('btntext --> ' + btntext);
+      console.log('linkurl --> ' + linkurl);
+      console.log('title --> ' + title);
+      console.log('trackingalias --> ' + trackingalias);
+
+      var htmlButton = "<div> the quick brow fox " + btntext ;
+
+
+      sdk.setData(
         {
-          'buttonText' : 'btnText',
-          'linkUrl' : 'linkUrl',
-          'title' : 'Title',
-          'trackingAlias' : 'Alias'
+          'buttonText' : btnText,
+          'linkUrl' : linkurl,
+          'title' : title,
+          'trackingAlias' : trackingalias,
+          'htmlButton' : htmlButton
         }
       )
 
+      sdk.setContent(htmlButton);
+
       sdk.getContent(function(data){
-        console.log('Content from getContent ' + JSON.stringify(data));
+        console.log('Content from getContent ' + data);
       })
 
     </script>
