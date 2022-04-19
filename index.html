@@ -143,7 +143,7 @@
          <!-- start Outlook button -->
          <!-- put new URL in both hrefs -->
          <!--[if mso]> 
-         <a href="#" alias="" title="">
+         <a href="${linkurl}" alias="${trackingalias}" title="${title}">
             <div style="line-height: 16px; height: 16px ">&#8202;</div>
             <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://pressed" style="height:41px;v-text-anchor:center; width:135px; margin-bottom:0" arcsize="210%" fillcolor="#fff" strokecolor="#016ECC" strokeweight="1.5pt">
                <w:anchorlock/>
@@ -162,7 +162,7 @@
                <tbody>
                   <tr>
                      <td align="center" bgcolor="#ffffff" role="presentation" style="border:2px solid #016ECC;border-radius:23px;cursor:auto;height:41px;mso-padding-alt:12px 22px;background:#ffffff;" valign="middle">
-                        <a href="#" alias="" title="">
+                        <a href="${linkurl}" alias="${trackingalias}" title="${title}">
                            <p style="display:inline-block;background:#ffffff;color:#032E61;font-family:itc-avant-garde-gothic-pro, sans-serif;font-size:13px;font-weight:bold;line-height:17px;letter-spacing:0.5px;margin:0;text-decoration:none;text-transform:none;padding:12px 22px;mso-padding-alt:0px;border-radius:23px;"><b class="heading-dark-mode">${btntext}</b></p>
                         </a>
                      </td>
@@ -189,7 +189,7 @@
       </div>`;
         return htmlButton;
       }
-
+    
       function renderPreview() { 
         //Get and set data
         sdk.getData(function(data){
@@ -339,14 +339,14 @@
 
       
       /* hardcoding content */ 
-      content = {
+      /*content = {
         'buttonText' : 'btntext',
         'linkUrl' : 'linkurl',
         'title' : 'title',
         'trackingAlias' : 'trackingalias',
         'htmlButton' : getHtml(btntext, linkurl, title, trackingalias)
       }
-      sdk.setData(content); 
+      sdk.setData(content); */
 
       sdk.getData(function(data){
         console.log('Get data from page load ' + JSON.stringify(data));
