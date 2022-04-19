@@ -130,7 +130,6 @@
             value="Save"
             style="float: right; margin: 5px"
             id="save"
-            onclick="save()"
           />
         </div>
       </div> 
@@ -207,7 +206,7 @@
       sdk.setBlockEditorWidth(500, function (data) {
         consoleprint(
           debug,
-          "109. Block width set to 500. Data received " + data
+          "Block width set to 500. Data received " + data
         );
       });
       document.getElementById('save').addEventListener(
@@ -215,7 +214,7 @@
         function() { 
           //Get and set data
           sdk.getData(function(data){
-            console.log('Clicked save. Get Content returns ' + data);
+            console.log('Clicked save. Get Content returns ' + JSON.stringify(data));
             if(data.buttonText == '') {
               var btntext = document.getElementById('text-input-id-btn-text').value;
               var linkurl = document.getElementById('text-input-id-link-url').value;
@@ -249,15 +248,25 @@
       console.log('trackingalias --> ' + trackingalias);
 
      
-      sdk.setData(
-        {
-          'buttonText' : btntext,
-          'linkUrl' : linkurl,
-          'title' : title,
-          'trackingAlias' : trackingalias,
-          'htmlButton' : htmlButton
+      sdk.getData(function(data){
+        console.log('Clicked save. Get Content returns ' + JSON.stringify(data));
+        if(data.buttonText == '') {
+          var btntext = document.getElementById('text-input-id-btn-text').value;
+          var linkurl = document.getElementById('text-input-id-link-url').value;
+          var title = document.getElementById('text-input-id-title').value;
+          var trackingalias = document.getElementById('text-input-id-tracking-alias').value;
+          sdk.setData(
+                  {
+                    'buttonText' : btntext,
+                    'linkUrl' : linkurl,
+                    'title' : title,
+                    'trackingAlias' : trackingalias,
+                    'htmlButton' : htmlButton
+                  }
+                );
+          console.log('Clicked save. Get content is empty. Saved ' + btntext + ' to setData.')
         }
-      )
+      }); 
 
       sdk.setContent(htmlButton);
 
