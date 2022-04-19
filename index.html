@@ -258,9 +258,7 @@
       function renderPreview() {
         //Get and set data
         sdk.getData(function (data) {
-          //consoleprint(debug,
-            "Clicked save. Get Content returns " + JSON.stringify(data)
-          );
+          //consoleprint(debug,"Clicked save. Get Content returns " + JSON.stringify(data));
           //if(isEmptyObject(data)) {
           //consoleprint(debug, "isEmptyObject(data) ==> " + isEmptyObject(data));
           var btntext = document.getElementById("text-input-id-btn-text").value;
@@ -282,11 +280,7 @@
             align: align,
             htmlButton: getHtml(btntext, linkurl, title, align, trackingalias),
           });
-          //consoleprint(debug,
-            "Clicked save. Get content is empty. Saved " +
-              btntext +
-              " to setData."
-          );
+          //consoleprint(debug,"Clicked save. Get content is empty. Saved " +btntext +" to setData.");
           if (debug) {
             sdk.getData(function (data) {
               //consoleprint(debug,"Data stored " + JSON.stringify(data));
@@ -294,14 +288,9 @@
           }
 
           //Set content for preview
-          //consoleprint(debug,
-            "Setting content for preview data[htmlButton]- " +
-              getHtml(btntext, linkurl, title, align, trackingalias)
-          );
+          //consoleprint(debug,"Setting content for preview data[htmlButton]- " +getHtml(btntext, linkurl, title, align, trackingalias));
           sdk.setContent(getHtml(btntext, linkurl, title, align, trackingalias), function (data) {
-            //consoleprint(debug,
-              "Setting content for preview - " + JSON.stringify(data)
-            );
+            //consoleprint(debug,"Setting content for preview - " + JSON.stringify(data));
           });
 
           //}
@@ -394,10 +383,7 @@
         //consoleprint(debug, "Get Content on page load " + content);
         if (content) {
           sdk.setContent(content, function (contentFound) {
-            //consoleprint(
-              debug,
-              "Content Found on page load (must be just html) " + contentFound
-            );
+            //consoleprint(debug,"Content Found on page load (must be just html) " + contentFound);
           });
         } /*else {
           sdk.setContent(
@@ -479,7 +465,7 @@
         for (var i in obj) return false;
         return true;
       }       
-      function //consoleprint(debug, msg) {
+      function consoleprint(debug, msg) {
         debug ? console.log(debug,msg) : "";
       }
 
