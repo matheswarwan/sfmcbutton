@@ -239,7 +239,10 @@
                         'htmlButton' : htmlButton
                       }
                     );
-              console.log('Clicked save. Get content is empty. Saved ' + btntext + ' to setData.')
+              console.log('Clicked save. Get content is empty. Saved ' + btntext + ' to setData.');
+              if(debug) {
+                sdk.getData(function(data) { console.log('Data stored ' + JSON.stringify(data)); });
+              }
             }
           }); 
           //Set content for preview
@@ -259,7 +262,10 @@
                     'htmlButton' : htmlButton
                   }
                 );
-          console.log('Get content from page load is empty. Saved ' + btntext + ' to setData.')
+          console.log('Get content from page load is empty. Saved ' + btntext + ' to setData.');
+          if(debug) {
+            sdk.getData(function(data) { console.log('Data stored ' + JSON.stringify(data)); });
+          }
         }
       }); 
 
