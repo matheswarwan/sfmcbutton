@@ -258,22 +258,22 @@
       function renderPreview() {
         //Get and set data
         sdk.getData(function (data) {
-          consoleprint(debug,
+          //consoleprint(debug,
             "Clicked save. Get Content returns " + JSON.stringify(data)
           );
           //if(isEmptyObject(data)) {
-          consoleprint(debug, "isEmptyObject(data) ==> " + isEmptyObject(data));
+          //consoleprint(debug, "isEmptyObject(data) ==> " + isEmptyObject(data));
           var btntext = document.getElementById("text-input-id-btn-text").value;
           var linkurl = document.getElementById("text-input-id-link-url").value;
           var title = document.getElementById("text-input-id-title").value;
           var align = document.getElementById('select-align').selectedOptions[0].value;
           var trackingalias = document.getElementById("text-input-id-tracking-alias").value;
 
-          consoleprint(debug,"btntext in renderpreview() --> " + btntext);
-          consoleprint(debug,"linkurl in renderpreview() --> " + linkurl);
-          consoleprint(debug,"title in renderpreview() --> " + title);
-          consoleprint(debug,"title in renderpreview() --> " + align);
-          consoleprint(debug,"trackingalias in renderpreview() --> " + trackingalias);
+          //consoleprint(debug,"btntext in renderpreview() --> " + btntext);
+          //consoleprint(debug,"linkurl in renderpreview() --> " + linkurl);
+          //consoleprint(debug,"title in renderpreview() --> " + title);
+          //consoleprint(debug,"title in renderpreview() --> " + align);
+          //consoleprint(debug,"trackingalias in renderpreview() --> " + trackingalias);
           sdk.setData({
             buttonText: btntext,
             linkUrl: linkurl,
@@ -282,24 +282,24 @@
             align: align,
             htmlButton: getHtml(btntext, linkurl, title, align, trackingalias),
           });
-          consoleprint(debug,
+          //consoleprint(debug,
             "Clicked save. Get content is empty. Saved " +
               btntext +
               " to setData."
           );
           if (debug) {
             sdk.getData(function (data) {
-              consoleprint(debug,"Data stored " + JSON.stringify(data));
+              //consoleprint(debug,"Data stored " + JSON.stringify(data));
             });
           }
 
           //Set content for preview
-          consoleprint(debug,
+          //consoleprint(debug,
             "Setting content for preview data[htmlButton]- " +
               getHtml(btntext, linkurl, title, align, trackingalias)
           );
           sdk.setContent(getHtml(btntext, linkurl, title, align, trackingalias), function (data) {
-            consoleprint(debug,
+            //consoleprint(debug,
               "Setting content for preview - " + JSON.stringify(data)
             );
           });
@@ -308,7 +308,7 @@
         });
 
         /* sdk.getContent(function(data){
-          consoleprint(debug,'Clicked save. Content from getContent ' + data);
+          //consoleprint(debug,'Clicked save. Content from getContent ' + data);
           sdk.setContent(data['htmlButton']);
             //(getHtml(btntext, linkurl, title, trackingalias));
         });*/
@@ -336,10 +336,10 @@
       var align = document.getElementById('select-align').selectedOptions[0].value;
       var trackingalias = document.getElementById("text-input-id-tracking-alias").value;
 
-      consoleprint(debug,"btntext --> " + btntext);
-      consoleprint(debug,"linkurl --> " + linkurl);
-      consoleprint(debug,"title --> " + title);
-      consoleprint(debug,"trackingalias --> " + trackingalias);
+      //consoleprint(debug,"btntext --> " + btntext);
+      //consoleprint(debug,"linkurl --> " + linkurl);
+      //consoleprint(debug,"title --> " + title);
+      //consoleprint(debug,"trackingalias --> " + trackingalias);
 
       var sdk = new window.sfdc.BlockSDK({
         blockEditorWidth: 500,
@@ -350,40 +350,40 @@
       document.getElementById("alertBox").style.display = "none";
       document.getElementById("errorMsg").innerHTML = "";
       sdk.setBlockEditorWidth(500, function (data) {
-        consoleprint(debug, "Block width set to 500. Data received " + data);
+        //consoleprint(debug, "Block width set to 500. Data received " + data);
       });
       document.getElementById("text-input-id-btn-text").addEventListener(
         "input",
         debounce((e) => {
-          consoleprint(debug,"element debouced btn-text --> " + JSON.stringify(e));
+          //consoleprint(debug,"element debouced btn-text --> " + JSON.stringify(e));
           renderPreview();
         }, 500)
       );
       document.getElementById("text-input-id-link-url").addEventListener(
         "input",
         debounce((e) => {
-          consoleprint(debug,"element debouced link-url --> " + JSON.stringify(e));
+          //consoleprint(debug,"element debouced link-url --> " + JSON.stringify(e));
           renderPreview();
         }, 500)
       );
       document.getElementById("text-input-id-title").addEventListener(
         "input",
         debounce((e) => {
-          consoleprint(debug,"element id-title debouced --> " + JSON.stringify(e));
+          //consoleprint(debug,"element id-title debouced --> " + JSON.stringify(e));
           renderPreview();
         }, 500)
       );
       document.getElementById("text-input-id-tracking-alias").addEventListener(
         "input",
         debounce((e) => {
-          consoleprint(debug,"element debouced tracking-alias --> "  + JSON.stringify(e));
+          //consoleprint(debug,"element debouced tracking-alias --> "  + JSON.stringify(e));
           renderPreview();
         }, 500)
       );
       document.getElementById("select-align").addEventListener(
         "input",
         debounce((e) => {
-          consoleprint(debug,"select-align element debouced --> " + JSON.stringify(e));
+          //consoleprint(debug,"select-align element debouced --> " + JSON.stringify(e));
           renderPreview();
         }, 50)
       );
@@ -391,10 +391,10 @@
 
 
       sdk.getContent(function (content) {
-        consoleprint(debug, "Get Content on page load " + content);
+        //consoleprint(debug, "Get Content on page load " + content);
         if (content) {
           sdk.setContent(content, function (contentFound) {
-            consoleprint(
+            //consoleprint(
               debug,
               "Content Found on page load (must be just html) " + contentFound
             );
@@ -411,7 +411,7 @@
                   sdk.setContent("Nothing in getData?!?!");
                 }
               });* / 
-              consoleprint(
+              //consoleprint(
                 debug,
                 "Content is set on page load " + content
               );
@@ -431,8 +431,8 @@
       sdk.setData(content); */
 
       sdk.getData(function (data) {
-        consoleprint(debug,"Get data from page load " + JSON.stringify(data));
-        consoleprint(debug,"hardcoded data - ");
+        //consoleprint(debug,"Get data from page load " + JSON.stringify(data));
+        //consoleprint(debug,"hardcoded data - ");
         if (isEmptyObject(data)) {
           document.getElementById("text-input-id-btn-text").value =
             "Button Text";
@@ -460,15 +460,15 @@
                     'htmlButton' : getHtml(btntext, linkurl, title, trackingalias)
                   }
                 );
-          consoleprint(debug,'Get content from page load is empty. Saved ' + btntext + ' to setData.');
+          //consoleprint(debug,'Get content from page load is empty. Saved ' + btntext + ' to setData.');
           if(debug) {
-            sdk.getData(function(data) { consoleprint(debug,'Data stored ' + JSON.stringify(data)); });
+            sdk.getData(function(data) { //consoleprint(debug,'Data stored ' + JSON.stringify(data)); });
           }
         } */
       });
 
       /* sdk.getContent(function(data){
-        consoleprint(debug,'Content from getContent ' + data);
+        //consoleprint(debug,'Content from getContent ' + data);
         sdk.setContent(getHtml(btntext, linkurl, title, trackingalias));
       });
     */
@@ -478,8 +478,8 @@
       function isEmptyObject(obj) {
         for (var i in obj) return false;
         return true;
-      }
-      function consoleprint(debug, msg) {
+      }       
+      function //consoleprint(debug, msg) {
         debug ? console.log(debug,msg) : "";
       }
 
