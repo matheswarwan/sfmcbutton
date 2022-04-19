@@ -190,6 +190,37 @@
         return htmlButton;
       }
 
+      function renderPreview() { 
+        //Get and set data
+        sdk.getData(function(data){
+          console.log('Clicked save. Get Content returns ' + JSON.stringify(data));
+          if(data) {
+            var btntext = document.getElementById('text-input-id-btn-text').value;
+            var linkurl = document.getElementById('text-input-id-link-url').value;
+            var title = document.getElementById('text-input-id-title').value;
+            var trackingalias = document.getElementById('text-input-id-tracking-alias').value;
+            sdk.setData(
+                    {
+                      'buttonText' : btntext,
+                      'linkUrl' : linkurl,
+                      'title' : title,
+                      'trackingAlias' : trackingalias,
+                      'htmlButton' : getHtml(btntext, linkurl, title, trackingalias)
+                    }
+                  );
+            console.log('Clicked save. Get content is empty. Saved ' + btntext + ' to setData.');
+            if(debug) {
+              sdk.getData(function(data) { console.log('Data stored ' + JSON.stringify(data)); });
+            }
+          }
+        }); 
+        //Set content for preview
+        sdk.getContent(function(data){
+          console.log('Clicked save. Content from getContent ' + data);
+          sdk.setContent(getHtml(btntext, linkurl, title, trackingalias));
+        });
+      }
+      
       var textAreaContent;
       var errMsg;
       var debug = true;
@@ -223,33 +254,9 @@
       });
       document.getElementById('save').addEventListener(
         'click',
-        function() { 
-          //Get and set data
-          sdk.getData(function(data){
-            console.log('Clicked save. Get Content returns ' + JSON.stringify(data));
-            if(data) {
-              var btntext = document.getElementById('text-input-id-btn-text').value;
-              var linkurl = document.getElementById('text-input-id-link-url').value;
-              var title = document.getElementById('text-input-id-title').value;
-              var trackingalias = document.getElementById('text-input-id-tracking-alias').value;
-              sdk.setData(
-                      {
-                        'buttonText' : btntext,
-                        'linkUrl' : linkurl,
-                        'title' : title,
-                        'trackingAlias' : trackingalias,
-                        'htmlButton' : getHtml(btntext, linkurl, title, trackingalias)
-                      }
-                    );
-              console.log('Clicked save. Get content is empty. Saved ' + btntext + ' to setData.');
-              if(debug) {
-                sdk.getData(function(data) { console.log('Data stored ' + JSON.stringify(data)); });
-              }
-            }
-          }); 
-          //Set content for preview
-          sdk.setContent(getHtml(btntext, linkurl, title, trackingalias));
-        }
+        debounce((e) => {
+          renderPreview();
+        }, 5000)
         );
      
       sdk.getData(function(data){
@@ -271,11 +278,10 @@
         }
       }); 
 
-      sdk.setContent(getHtml(btntext, linkurl, title, trackingalias));
-
       sdk.getContent(function(data){
         console.log('Content from getContent ' + data);
-      })
+        sdk.setContent(getHtml(btntext, linkurl, title, trackingalias));
+      });
 
     </script>
 
