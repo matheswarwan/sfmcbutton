@@ -221,8 +221,10 @@
           //}
         }); 
         //Set content for preview
-        console.log('Setting content for preview - ' + data['htmlButton'])
-        sdk.setContent(data['htmlButton']);
+        
+        sdk.setContent(data['htmlButton'] function(data) { 
+          console.log('Setting content for preview - ' + JSON.stringify(data))
+        });
         /* sdk.getContent(function(data){
           console.log('Clicked save. Content from getContent ' + data);
           sdk.setContent(data['htmlButton']);
