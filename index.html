@@ -66,7 +66,6 @@
         width: 100%;
       }
       .textwrapper {
-        border: 1px solid #999999;
         margin: 5px 0;
         padding: 3px;
       }
@@ -87,7 +86,7 @@
               placeholder="Placeholder text…"
               required=""
               class="slds-input"
-              value="Button Text default"
+              value="Enter a value"
             />
           </div>
         </div>
@@ -147,24 +146,6 @@
           </div>
           </div>
           </div>
-        <!-- <div class="slds-button-group" role="group">
-          <button id="btnLeft" class="slds-button slds-button_neutral">Left</button>
-          <button id="btnCenter" class="slds-button slds-button_neutral">Center</button>
-          <button id="btnRight" class="slds-button slds-button_neutral">Right</button>
-          </div> -->
-          <!-- < ! - -  Align button start - - >
-        <div class="slds-button-group" role="group">
-          <button class="slds-button slds-button_neutral">Align</button>
-          <div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-button_last">
-            <button class="slds-button slds-button_icon slds-button_icon-border-filled" aria-haspopup="true" aria-expanded="false" title="Show More">
-              <svg class="slds-button__icon" aria-hidden="true">
-                <use xlink:href="/svg/btn-symbols.svg#down"></use>
-              </svg>
-              <span class="slds-assistive-text">Show More</span>
-            </button>
-          </div>
-        </div>
-        < ! - - Align button end  - - >-->
       </div>
       <div style="padding-top: 5px">
         <div class="alert" id="alertBox">
@@ -178,26 +159,6 @@
           </div>
         </div>
       </div>
-      <!--  <div style="padding-top: 5px">
-        <div>
-        <input class="btn" type="button" value="Render" id="renderBtn" />
-          <input
-            class="btn"
-            type="button"
-            value="Starwars Template"
-            style="float: right; margin: 5px"
-            id="starwarsMjml"
-            onclick="mjmlStarWarsTemplate()"
-          />
-          <input
-            class="btn"
-            type="button"
-            value="Save"
-            style="float: right; margin: 5px"
-            id="save"
-          />
-        </div>
-      </div> -->
     </div>
     <script src="blocksdk.js"></script>
 
@@ -256,22 +217,12 @@
       }
     
       function renderPreview() {
-        //Get and set data
         sdk.getData(function (data) {
-          //consoleprint(debug,"Clicked save. Get Content returns " + JSON.stringify(data));
-          //if(isEmptyObject(data)) {
-          //consoleprint(debug, "isEmptyObject(data) ==> " + isEmptyObject(data));
           var btntext = document.getElementById("text-input-id-btn-text").value;
           var linkurl = document.getElementById("text-input-id-link-url").value;
           var title = document.getElementById("text-input-id-title").value;
           var align = document.getElementById('select-align').selectedOptions[0].value;
           var trackingalias = document.getElementById("text-input-id-tracking-alias").value;
-
-          //consoleprint(debug,"btntext in renderpreview() --> " + btntext);
-          //consoleprint(debug,"linkurl in renderpreview() --> " + linkurl);
-          //consoleprint(debug,"title in renderpreview() --> " + title);
-          //consoleprint(debug,"title in renderpreview() --> " + align);
-          //consoleprint(debug,"trackingalias in renderpreview() --> " + trackingalias);
           sdk.setData({
             buttonText: btntext,
             linkUrl: linkurl,
@@ -280,27 +231,10 @@
             align: align,
             htmlButton: getHtml(btntext, linkurl, title, align, trackingalias),
           });
-          //consoleprint(debug,"Clicked save. Get content is empty. Saved " +btntext +" to setData.");
-          if (debug) {
-            sdk.getData(function (data) {
-              //consoleprint(debug,"Data stored " + JSON.stringify(data));
-            });
-          }
 
           //Set content for preview
-          //consoleprint(debug,"Setting content for preview data[htmlButton]- " +getHtml(btntext, linkurl, title, align, trackingalias));
-          sdk.setContent(getHtml(btntext, linkurl, title, align, trackingalias), function (data) {
-            //consoleprint(debug,"Setting content for preview - " + JSON.stringify(data));
-          });
-
-          //}
+          sdk.setContent(getHtml(btntext, linkurl, title, align, trackingalias));
         });
-
-        /* sdk.getContent(function(data){
-          //consoleprint(debug,'Clicked save. Content from getContent ' + data);
-          sdk.setContent(data['htmlButton']);
-            //(getHtml(btntext, linkurl, title, trackingalias));
-        });*/
       }
 
       var textAreaContent;
@@ -325,11 +259,6 @@
       var align = document.getElementById('select-align').selectedOptions[0].value;
       var trackingalias = document.getElementById("text-input-id-tracking-alias").value;
 
-      //consoleprint(debug,"btntext --> " + btntext);
-      //consoleprint(debug,"linkurl --> " + linkurl);
-      //consoleprint(debug,"title --> " + title);
-      //consoleprint(debug,"trackingalias --> " + trackingalias);
-
       var sdk = new window.sfdc.BlockSDK({
         blockEditorWidth: 500,
         tabs: ["htmlblock", "stylingblock"],
@@ -344,35 +273,30 @@
       document.getElementById("text-input-id-btn-text").addEventListener(
         "input",
         debounce((e) => {
-          //consoleprint(debug,"element debouced btn-text --> " + JSON.stringify(e));
           renderPreview();
         }, 500)
       );
       document.getElementById("text-input-id-link-url").addEventListener(
         "input",
         debounce((e) => {
-          //consoleprint(debug,"element debouced link-url --> " + JSON.stringify(e));
           renderPreview();
         }, 500)
       );
       document.getElementById("text-input-id-title").addEventListener(
         "input",
         debounce((e) => {
-          //consoleprint(debug,"element id-title debouced --> " + JSON.stringify(e));
           renderPreview();
         }, 500)
       );
       document.getElementById("text-input-id-tracking-alias").addEventListener(
         "input",
         debounce((e) => {
-          //consoleprint(debug,"element debouced tracking-alias --> "  + JSON.stringify(e));
           renderPreview();
         }, 500)
       );
       document.getElementById("select-align").addEventListener(
         "input",
         debounce((e) => {
-          //consoleprint(debug,"select-align element debouced --> " + JSON.stringify(e));
           renderPreview();
         }, 50)
       );
@@ -380,45 +304,13 @@
 
 
       sdk.getContent(function (content) {
-        //consoleprint(debug, "Get Content on page load " + content);
         if (content) {
           sdk.setContent(content, function (contentFound) {
-            //consoleprint(debug,"Content Found on page load (must be just html) " + contentFound);
           });
-        } /*else {
-          sdk.setContent(
-            "No button content to preview",
-            function (content) {
-              //if no html found, check if getdata has the value
-              /*sdk.getData(function (data) {
-                if (data["htmlButton"]) {
-                  sdk.setContent(data["htmlButton"]);
-                } else {
-                  sdk.setContent("Nothing in getData?!?!");
-                }
-              });* / 
-              //consoleprint(
-                debug,
-                "Content is set on page load " + content
-              );
-            }
-          ); 
-        }*/
+        } 
       });
 
-      /* hardcoding content */
-      /*content = {
-        'buttonText' : 'btntext',
-        'linkUrl' : 'linkurl',
-        'title' : 'title',
-        'trackingAlias' : 'trackingalias',
-        'htmlButton' : getHtml(btntext, linkurl, title, trackingalias)
-      }
-      sdk.setData(content); */
-
       sdk.getData(function (data) {
-        //consoleprint(debug,"Get data from page load " + JSON.stringify(data));
-        //consoleprint(debug,"hardcoded data - ");
         if (isEmptyObject(data)) {
           document.getElementById("text-input-id-btn-text").value =
             "Button Text";
@@ -436,28 +328,8 @@
           document.getElementById("text-input-id-tracking-alias").value =
             data["trackingAlias"];
         }
-        /* if(!isEmptyObject(data)) {
-          sdk.setData(
-                  {
-                    'buttonText' : btntext,
-                    'linkUrl' : linkurl,
-                    'title' : title,
-                    'trackingAlias' : trackingalias,
-                    'htmlButton' : getHtml(btntext, linkurl, title, trackingalias)
-                  }
-                );
-          //consoleprint(debug,'Get content from page load is empty. Saved ' + btntext + ' to setData.');
-          if(debug) {
-            sdk.getData(function(data) { //consoleprint(debug,'Data stored ' + JSON.stringify(data)); });
-          }
-        } */
       });
 
-      /* sdk.getContent(function(data){
-        //consoleprint(debug,'Content from getContent ' + data);
-        sdk.setContent(getHtml(btntext, linkurl, title, trackingalias));
-      });
-    */
     </script>
 
     <script>
