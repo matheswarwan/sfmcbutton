@@ -12,11 +12,12 @@
     <link rel="stylesheet" href="css/input-index.css" />
     <link rel="stylesheet" href="css/form-element-index.css" />
     <link rel="stylesheet" href="css/form-element-index.css" />
+    <link rel="stylesheet" href="css/salesforce-lightning-design-system.min.css" />
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/require.js"></script>
     <style>
       .slds-form-element{
-        font-family: Arial, Helvetica, sans-serif;
+        margin-bottom: 0.6em;
       }
       .btn {
         background: #0070d2;
@@ -86,10 +87,9 @@
             <input
               type="text"
               id="text-input-id-btn-text"
-              placeholder="Placeholder text…"
+              placeholder="Button name"
               required=""
               class="slds-input"
-              value="Enter a button name"
             />
           </div>
         </div>
@@ -304,8 +304,6 @@
         }, 50)
       );
       
-
-
       sdk.getContent(function (content) {
         if (content) {
           sdk.setContent(content, function (contentFound) {
