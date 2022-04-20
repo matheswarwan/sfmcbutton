@@ -15,6 +15,9 @@
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/require.js"></script>
     <style>
+      .slds-form-element{
+        font-family: Arial, Helvetica, sans-serif;
+      }
       .btn {
         background: #0070d2;
         color: #fff;
@@ -86,7 +89,7 @@
               placeholder="Placeholder text…"
               required=""
               class="slds-input"
-              value="Enter a value"
+              value="Enter a button name"
             />
           </div>
         </div>
@@ -98,7 +101,7 @@
             <input
               type="text"
               id="text-input-id-link-url"
-              placeholder="Placeholder text…"
+              placeholder="https://www.example.com"
               required=""
               class="slds-input"
             />
@@ -112,7 +115,7 @@
             <input
               type="text"
               id="text-input-id-title"
-              placeholder="Placeholder text…"
+              placeholder="Title"
               required=""
               class="slds-input"
             />
@@ -128,7 +131,7 @@
             <input
               type="text"
               id="text-input-id-tracking-alias"
-              placeholder="Placeholder text…"
+              placeholder="Alias"
               required=""
               class="slds-input"
             />
@@ -169,7 +172,7 @@
          <!-- start Outlook button -->
          <!-- put new URL in both hrefs -->
          <!--[if mso]> 
-         <a href="${linkurl}" alias="${trackingalias}" title="${title}">
+         <a href="${linkurl}" alias="${trackingalias}" title="${title}" target="_blank">
             <div style="line-height: 16px; height: 16px ">&#8202;</div>
             <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://pressed" style="height:41px;v-text-anchor:center; width:135px; margin-bottom:0" arcsize="210%" fillcolor="#fff" strokecolor="#016ECC" strokeweight="1.5pt">
                <w:anchorlock/>
@@ -188,7 +191,7 @@
                <tbody>
                   <tr>
                      <td align="center" bgcolor="#ffffff" role="presentation" style="border:2px solid #016ECC;border-radius:23px;cursor:auto;height:41px;mso-padding-alt:12px 22px;background:#ffffff;" valign="middle">
-                        <a href="${linkurl}" alias="${trackingalias}" title="${title}">
+                        <a href="${linkurl}" alias="${trackingalias}" title="${title}" target="_blank">
                            <p style="display:inline-block;background:#ffffff;color:#032E61;font-family:itc-avant-garde-gothic-pro, sans-serif;font-size:13px;font-weight:bold;line-height:17px;letter-spacing:0.5px;margin:0;text-decoration:none;text-transform:none;padding:12px 22px;mso-padding-alt:0px;border-radius:23px;"><b class="heading-dark-mode">${btntext}</b></p>
                         </a>
                      </td>
